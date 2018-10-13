@@ -21,35 +21,34 @@ const customStyles = {
     }
 };
 
-const TabContainer = function(props){
-    return(
-     <Typography component="div" style={{padding: 0}}>
-         {props.children}
-     </Typography>
+const TabContainer = function (props) {
+    return (
+        <Typography component="div" style={{ padding: 0 , textAlign: 'center'}}>
+            {props.children}
+        </Typography>
     );
 
 }
 
 class Header extends Component {
-    constructor() 
-    {
-      super();
-      this.state = {
-          modalIsOpen: false,
-          value: 0
-      };
+    constructor() {
+        super();
+        this.state = {
+            modalIsOpen: false,
+            value: 0
+        };
     }
 
     openModalHandler = () => {
-        this.setState({modalIsOpen: true});
+        this.setState({ modalIsOpen: true });
     }
 
-    closeModalHandler =() => {
-        this.setState({modalIsOpen: false});
+    closeModalHandler = () => {
+        this.setState({ modalIsOpen: false });
     }
 
     tabChangeHandler = (event, value) => {
-        this.setState({value});
+        this.setState({ value });
     }
 
 
@@ -64,21 +63,23 @@ class Header extends Component {
                         </Button>
                     </div>
                 </header>
-                <Modal ariaHideApp={false} isOpen ={this.state.modalIsOpen} contentLabel="Login"
-                onRequestClose={this.closeModalHandler} style={customStyles}>
-                <Tabs value={this.state.value} onChange={this.tabChangeHandler}>
-                    <Tab label="Login" />
-                    <Tab label="Register" />
-                </Tabs>
-                <TabContainer>
-                    <FormControl required>
-                        <InputLabel htmlFor="username"> Username </InputLabel>
-                        <Input id="username" type="text"></Input>
-                    </FormControl>
-                    <FormControl required>
-                        <InputLabel htmlFor="password"> Password </InputLabel>
-                        <Input id="password" type="password"></Input>
+                <Modal ariaHideApp={false} isOpen={this.state.modalIsOpen} contentLabel="Login"
+                    onRequestClose={this.closeModalHandler} style={customStyles}>
+                    <Tabs className="tabs" value={this.state.value} onChange={this.tabChangeHandler}>
+                        <Tab label="Login" />
+                        <Tab label="Register" />
+                    </Tabs>
+                    <TabContainer>
+                        <FormControl required>
+                            <InputLabel htmlFor="username"> Username </InputLabel>
+                            <Input id="username" type="text"></Input>
+                        </FormControl><br></br>
+                        <FormControl required>
+                            <InputLabel htmlFor="password"> Password </InputLabel>
+                            <Input id="password" type="password"></Input>
                         </FormControl>
+                        <br /><br />
+                        <Button variant="contained" color="primary">LOGIN</Button>
                     </TabContainer>
                 </Modal>
             </div>
