@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import Header from '../../common/header/Header';
 import moviesData from '../../assets/movieData';
- class Details extends Component {
+import Typography from '@material-ui/core/Typography';
+import './Details.css';
+
+class Details extends Component {
     constructor() {
         super();
         this.state = {
             movie: {}
         }
     }
-     componentDidMount() {
+    componentWillMount() {
         let currentState = this.state;
         currentState.movie = moviesData.filter((mov) => {
             return mov.id === this.props.movieId
@@ -16,20 +19,30 @@ import moviesData from '../../assets/movieData';
         this.setState({ currentState });
         console.log(this.state);
     }
-     render() {
+    render() {
+        let movie = this.state.movie;
         return (
             <div className="details">
                 <Header />
                 <div className="flex-containerDetails">
                     <div className="leftDetails">
-                     </div>
+                        <img src={movie.poster_url} alt={movie.title} />
+                    </div>
                     <div className="middleDetails">
-                     </div>
+                        <div>
+                            <Typography variant="headline" component="h2">{movie.title} </Typography>
+                        </div>
+                        <div>
+                            <Typography>
+                                <span className="bold">Genres: </span> {movie.genres.join(', ')}
+                            </Typography>
+                        </div>
+                    </div>
                     <div className="rightDetails">
-                     </div>
+                    </div>
                 </div>
             </div>
         )
     }
 }
- export default Details; 
+export default Details; 
